@@ -19,7 +19,7 @@ let lightbox = new SimpleLightbox(".gallery a", {
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const value = event.target.elements.query.value.trim();
+    const value = input.value.trim();
 
     if (value === "") {
         iziToast.error({
@@ -34,13 +34,15 @@ form.addEventListener("submit", async (event) => {
 
     try {
         const data = await fetchImages(value);
+
         if (data.hits && data.hits.length > 0) {
             list.insertAdjacentHTML("beforeend", renderImage(data.hits));
             lightbox.refresh();
+            input.value = "";
         } else {
             iziToast.error({
                 position: "topRight",
-                message: 'Sorry, there are no images matching your search query. Please try again!',
+                message: "Sorry, there are no images matching your search query. Please try again!",
             });
         }
     } catch (error) {
@@ -51,6 +53,4 @@ form.addEventListener("submit", async (event) => {
     } finally {
         loader.classList.add("visually-hidden");
     }
-
-    input.value = "";
 });

@@ -16,6 +16,10 @@ export async function fetchImages(value) {
         const response = await axios.get(BASE_URL, { params });
         return response.data;
     } catch (error) {
-        throw new Error("Error fetching images");
+        iziToast.error({
+            position: "topRight",
+            message: "Error fetching images. Please try again!",
+        });
+        return { hits: [] };
     }
 }
