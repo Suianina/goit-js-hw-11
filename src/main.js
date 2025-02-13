@@ -13,8 +13,8 @@ const loader = document.querySelector(".loader");
 let lightbox = new SimpleLightbox(".gallery a", {
     captions: true,
     captionDelay: 250,
-    captionPosition: 'bottom',
-    captionsData: 'alt',
+    captionPosition: "bottom",
+    captionsData: "alt",
 });
 
 form.addEventListener("submit", async (event) => {
@@ -35,7 +35,7 @@ form.addEventListener("submit", async (event) => {
     try {
         const data = await fetchImages(value);
 
-        if (data.hits && data.hits.length > 0) {
+        if (data.hits.length > 0) {
             list.insertAdjacentHTML("beforeend", renderImage(data.hits));
             lightbox.refresh();
             input.value = "";
