@@ -33,7 +33,7 @@ form.addEventListener("submit", async (event) => {
     loader.classList.remove("visually-hidden");
 
     try {
-        console.log("Отправляем запрос с:", value);
+        console.log("Надсилаємо запит з:", value);
         const data = await fetchImages(value);
         console.log("Ответ от API:", data);
 
@@ -48,7 +48,7 @@ form.addEventListener("submit", async (event) => {
             });
         }
     } catch (error) {
-        console.error("Ошибка при запросе:", error);
+        console.error("Помилка при запиті:", error);
         iziToast.error({
             position: "topRight",
             message: "Sorry, the request can't be completed at this time. Please try again",

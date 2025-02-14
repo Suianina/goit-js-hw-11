@@ -7,7 +7,7 @@ const API_KEY = "48789151-f51ae4d97727bedfe2d09c642";
 
 export async function fetchImages(value) {
     const query = value.trim();
-    console.log("Отправляем запрос:", query)
+    console.log("Надсилаємо запит:", query)
 
     const params = {
         key: API_KEY,
@@ -19,10 +19,10 @@ export async function fetchImages(value) {
 
     try {
         const response = await axios.get(BASE_URL, { params });
-        console.log("Ответ от API:", response.data);
+        console.log("Відповідь від API:", response.data);
         return response.data; 
     } catch (error) {
-        console.error("Ошибка API:", error);
+        console.error("Помилка API:", error);
         iziToast.error({
             position: "topRight",
             message: "Error fetching images. Please try again!",
