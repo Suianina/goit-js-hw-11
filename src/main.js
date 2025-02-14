@@ -33,9 +33,11 @@ form.addEventListener("submit", async (event) => {
     loader.classList.remove("visually-hidden");
 
     try {
+        console.log("Отправляем запрос с:", value);
         const data = await fetchImages(value);
+        console.log("Ответ от API:", data);
 
-        if (data.hits.length > 0) {
+        if (data.hits && data.hits.length > 0) {
             list.insertAdjacentHTML("beforeend", renderImage(data.hits));
             lightbox.refresh();
             input.value = "";
@@ -46,6 +48,7 @@ form.addEventListener("submit", async (event) => {
             });
         }
     } catch (error) {
+        console.error("Ошибка при запросе:", error);
         iziToast.error({
             position: "topRight",
             message: "Sorry, the request can't be completed at this time. Please try again",
@@ -54,3 +57,5 @@ form.addEventListener("submit", async (event) => {
         loader.classList.add("visually-hidden");
     }
 });
+
+
